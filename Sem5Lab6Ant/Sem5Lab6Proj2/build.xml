@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="runJar" name="Sem5Lab6Proj2">
+
+  <target name="runJar" depends="compileJava, makeJar">
+    <java jar="jar/Sem5Lab6Proj2.jar" fork="true"/>
+  </target>
+
+  <target name="compileJava">
+    <mkdir dir="./classes"></mkdir>
+    <path id="lib.dir">
+      <fileset dir="./lib">
+        <include name="**/*.jar"/>
+      </fileset>
+    </path>
+    <javac includeantruntime="false" srcdir="./src" destdir="./classes">
+      <classpath refid="lib.dir"/>
+    </javac>
+  </target>
+
+  <target name="makeJar">
+    <mkdir dir="jar"></mkdir>
+    <jar destfile="./jar/sem5lab6Proj2.jar">
+      <fileset dir="./classes"></fileset>
+      <manifest>
+        <attribute name="Main-Class" value="sem5lab6proj2.Sem5Lab6Proj2"/>
+        <attribute name="Class-Path" value="../lib/Sem5Lab6Proj1.jar"/>
+      </manifest>
+    </jar>
+  </target>
+
+</project>
